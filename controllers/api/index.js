@@ -1,6 +1,6 @@
 const router = require('express').Router()
-const classGet = require('./class')
+const characterRoute = require('./characterRoute')
 
-router.use('/class', classGet)
+router.use('/character', characterRoute)
 
 module.exports = router;
