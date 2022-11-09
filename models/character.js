@@ -60,7 +60,7 @@ Character.init(
             references: {
                 model: 'class',
                 key: 'id',
-              },
+            },
         },
         race_id: {
             type: DataTypes.INTEGER,
@@ -68,7 +68,7 @@ Character.init(
             references: {
                 model: 'race',
                 key: 'id',
-              },
+            },
         },
 
     },
