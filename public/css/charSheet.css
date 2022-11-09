@@ -50,8 +50,10 @@ form.charsheet div.textblock label {
   font-size: 10px;
   width: calc(100% - 20px - 2px);
   border-radius: 0 0 10px 10px;
-  padding: 4px 0;
+  padding-top: 10px;
+  padding-bottom: 3px;
   font-weight: bold;
+  margin-top: -8px;
 }
 form.charsheet div.textblock textarea {
   border: 1px solid black;
@@ -144,8 +146,7 @@ form.charsheet main div.label-container {
 form.charsheet main div.label-container > label {
   position: absolute;
   left: 0;
-  top: 1px;
-  transform: translate(0%, 50%);
+  top: 2px;
   width: 100%;
   font-size: 8px;
 }
@@ -165,6 +166,7 @@ form.charsheet main > section section.attributes div.scores {
   background-color: #bbb;
   border-radius: 10px;
   padding-bottom: 5px;
+  margin-right: 7px;
 }
 form.charsheet main > section section.attributes div.scores label {
   font-size: 8px;
@@ -194,7 +196,6 @@ form.charsheet main > section section.attributes div.scores ul li input {
 }
 form.charsheet main > section section.attributes div.scores ul li div.score input {
   text-align: center;
-  font-size: 40px;
   padding: 2px 0px 0px 0px;
   background: white;
 }
@@ -625,4 +626,11 @@ form.charsheet main section.features div textarea {
   border: 0;
   padding: 5px;
   height: 43em;
+}
+
+select {
+  word-wrap: normal;
+  border: none;
+  border-bottom: 1px solid;
+  width: 90%;
 }
