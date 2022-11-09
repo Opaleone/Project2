@@ -1,6 +1,28 @@
 const raceSelector = document.querySelector('#race-selector')
+const formSubmit = document.querySelector('#submit-input')
 
 const apiUrl = 'https://www.dnd5eapi.co/api/'
+
+async function createCharacter(event) {
+  event.preventDefault()
+
+  let raceName = document.querySelector('#race').value
+  let className = document.querySelector('#class').value
+
+  console.log(raceName)
+  console.log(className)
+
+  let raceData = await getRace(raceName)
+  let classData = await getClass(className)
+
+  console.log(raceData)
+  console.log(classData)
+
+  // fetch('/api/characters', () => {
+  //   method: 'POST'
+  // })
+  //   .then()
+}
 
 async function getRace(val) {
   let raceData = await fetch(apiUrl + `races/${val}`)
@@ -16,4 +38,4 @@ async function getClass(val) {
   return response
 }
 
-raceSelector.addEventListener('click', getRace(val))
+formSubmit.addEventListener('click', createCharacter)

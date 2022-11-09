@@ -634,3 +634,18 @@ select {
   border-bottom: 1px solid;
   width: 90%;
 }
+
+#submit-btn {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+#submit-input {
+  width: 50%;
+  border: none;
+  background-color: #bbb;
+  color: white;
+  margin: 10px 0;
+  border-radius: 10px;
+}
