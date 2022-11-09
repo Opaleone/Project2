@@ -3,11 +3,13 @@ const newFormHandler = async (event) => {
   
     const name = document.querySelector('#character-name').value.trim();
     const description = document.querySelector('#character-desc').value.trim();
-  
+    const race = document.querySelector('#race').value.trim();
+    const className = document.querySelector('#class-name').value.tirm();
+
     if (name && description) {
-      const response = await fetch(`/api/`, {
+      const response = await fetch(`/api/characters`, {
         method: 'POST',
-        body: JSON.stringify({ name, description }),
+        body: JSON.stringify({ name, description, race, className }),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -25,7 +27,7 @@ const newFormHandler = async (event) => {
     if (event.target.hasAttribute('data-id')) {
       const id = event.target.getAttribute('data-id');
   
-      const response = await fetch(`/api/character/${id}`, {
+      const response = await fetch(`/api/characters/${id}`, {
         method: 'DELETE',
       });
   

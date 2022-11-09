@@ -1,10 +1,10 @@
-const Character = require('./character');
 const Race = require('./race');
 const Class = require('./class');
+const Character = require('./character');
 const User = require('./user');
 
 
-Character.blongsTo(Race, {
+Character.belongsTo(Race, {
     foreignKey: 'race_id'
 })
 
@@ -20,4 +20,4 @@ User.hasMany(Character, {
     foreignKey: 'character_id'
 })
 
-module.exports = {Character, Race}
+module.exports = { Character, Race, User, Class }
