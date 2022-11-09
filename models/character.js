@@ -1,5 +1,8 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
+const Race = require('./race');
+const Class = require('./class');
+
 
 class Character extends Model {}
 
@@ -58,7 +61,7 @@ Character.init(
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'class',
+                model: Class,
                 key: 'id',
             },
         },
@@ -66,7 +69,7 @@ Character.init(
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'race',
+                model: Race,
                 key: 'id',
             },
         },
