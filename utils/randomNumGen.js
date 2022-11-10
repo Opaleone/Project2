@@ -9,4 +9,4 @@ function modifierGenerate() {
   return randomNum
 }
 
-module.exports = { baseGenerate, modifierGenerate };
+// module.exports = { baseGenerate, modifierGenerate };

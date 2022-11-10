@@ -23,7 +23,7 @@ home.get('/login', (req, res) => {
     res.status(500).json({message: 'Internal Server Error'})
   }
 })
-home.get('/homepage', (req, res) => {
+home.get('/', (req, res) => {
   try {
     return res.render('homepage')
   } catch (err) {
