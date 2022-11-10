@@ -635,17 +635,36 @@ select {
   width: 90%;
 }
 
-#submit-btn {
+#form-btns {
   display: flex;
   align-content: center;
-  justify-content: center;
+  justify-content: space-around;
 }
 
-#submit-input {
-  width: 50%;
+#submit-input, #save-input {
+  width: 30%;
   border: none;
   background-color: #bbb;
   color: white;
   margin: 50px 0;
   border-radius: 10px;
+}
+
+#submit-input:hover, #save-input:hover {
+  background-color: #b35647;
+  /* Shakes and changes color of btns 3 times */
+  animation-name: save-animation, displaceContent;
+  animation-duration: .05s;
+  animation-iteration-count: 3;
+}
+
+@keyframes save-animation {
+  from {background-color: #b35647;}
+  to {background-color: #191919;}
+}
+
+@keyframes displaceContent {
+  /* Shake form btns */
+  from { transform : translateY(-1px) }
+  to   { transform : translateY(.5px) }
 }
