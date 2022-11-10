@@ -17,6 +17,8 @@ async function updateCharacterSheet(event) {
   let raceData = await getRace(raceName)
   let classData = await getClass(className)
 
+
+
   console.log(raceData)
   console.log(classData)
 
@@ -47,8 +49,13 @@ function displayCharacterInfo(raceData, classData) {
   let statArr = document.querySelectorAll('.stat')
   let statModArr = document.querySelectorAll('.statmod')
   let skillArr = document.querySelectorAll('.skill-num')
+  let savingThrowsArr = document.querySelectorAll('.saving-throws')
   let speedNum = document.querySelector("input[name='speed']");
-  let hitDie = document.querySelector("input[name='remaininghd'")
+  let hitDie = document.querySelector("input[name='remaininghd']")
+  let hitPoints = document.querySelector("input[name='currenthp']")
+  let initiative = document.querySelector("input[name='initiative']")
+  let listArea = document.querySelector("textarea[name='otherprofs']")
+
 
   // console.log(statArr)
   console.log(statModArr)
@@ -61,26 +68,40 @@ function displayCharacterInfo(raceData, classData) {
 
     statArr[i].value = basicStats[randomNum];
 
-    // switch (basicStats[randomNum] > 10) {
-    //   case 12:
-    //     statModArr[i].value = "+1"
-    //     break;
-    //   case 14:
-    //     statModArr[i].value = "+2"
-    //     break;
-    //   case 16:
-    //     statModArr[i].value = "+3"
-    //     break;
-    //   case 18:
-    //     statModArr[i].value = "+4"
-    //     break;
-    //   case 20:
-    //     statModArr[i].value = "+5"
-    //     break;
-    //   default:
-    //     statModArr[i].value = 0
-    //     break;
-    // }
+    switch (basicStats[randomNum]) {
+      case 7:
+      case 8:
+        statModArr[i].value = "-1"
+        savingThrowsArr[i].value = "-1"
+        break;
+      case 12:
+      case 13:
+        statModArr[i].value = "+1"
+        savingThrowsArr[i].value = "+1"
+        break;
+      case 14:
+      case 15:
+        statModArr[i].value = "+2"
+        savingThrowsArr[i].value = "+2"
+        break;
+      case 16:
+      case 17:
+        statModArr[i].value = "+3"
+        savingThrowsArr[i].value = "+3"
+        break;
+      case 18:
+      case 19:
+        statModArr[i].value = "+4"
+        savingThrowsArr[i].value = "+4"
+        break;
+      case 20:
+        statModArr[i].value = "+5"
+        savingThrowsArr[i].value = "+5"
+        break;
+      default:
+        statModArr[i].value = 0
+        break;
+    }
 
     basicStats.splice(randomNum, 1)
   }
@@ -89,8 +110,20 @@ function displayCharacterInfo(raceData, classData) {
     skillArr[i].value = modifierGenerate()
   }
 
+  let profsListStr;
+
+  for (let i = 0; i < classData.proficiencies.length; i++) {
+    profsListStr += `${classData.proficiencies[i].name}\n`
+  }
+
+  console.log(profsListStr)
+
+  listArea.innerText = profsListStr
+
   speedNum.value = raceData.speed
   hitDie.value = classData.hit_die
+  hitPoints.value = parseInt(statModArr[2].value) + parseInt(classData.hit_die)
+  initiative.value = statModArr[1].value
 }
 
 function modifierGenerate() {

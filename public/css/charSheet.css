@@ -30,12 +30,12 @@ div.box {
 }
 
 form.charsheet {
-  width: 800px;
+  width: 60%;
   right: 0;
   left: 0;
   margin-right: auto;
   margin-left: auto;
-  margin-top: 10px;
+  margin-top: 60px;
 }
 form.charsheet div.textblock {
   display: flex;
@@ -159,18 +159,18 @@ form.charsheet main > section section.attributes {
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 form.charsheet main > section section.attributes div.scores {
   width: 101px;
   background-color: #bbb;
   border-radius: 10px;
   padding-bottom: 5px;
-  margin-right: 7px;
 }
 form.charsheet main > section section.attributes div.scores label {
   font-size: 8px;
   font-weight: bold;
+  margin-top: 3px;
 }
 form.charsheet main > section section.attributes div.scores ul {
   display: flex;
@@ -646,6 +646,6 @@ select {
   border: none;
   background-color: #bbb;
   color: white;
-  margin: 10px 0;
+  margin: 50px 0;
   border-radius: 10px;
 }
