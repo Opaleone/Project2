@@ -1,3 +1,28 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  How it works
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <form class="charsheet">
   <header>
     <section class="charname">
@@ -153,7 +178,7 @@
                 <label for="Strength-save">Strength</label><input class="saving-throws" name="Strength-save" placeholder="+0" value="0" type="text" /><input name="Strength-save-prof" type="checkbox" />
               </li>
               <li>
-                <label for="Dexterity-save">Dexterity</label><input class="saving-throws" name="Dexterity-save" placeholder="+0" value="0" type="text" /><input name="Dexterity-save-prof" type="checkbox" />
+                <label for="Dexterity-save">Dexterity</label><input class="saving-throws" name="Dexterity-save" placeholder="+0" value="0" type="text" /><input name="Strength-save-prof" type="checkbox" />
               </li>
               <li>
                 <label for="Constitution-save">Constitution</label><input class="saving-throws" name="Constitution-save" placeholder="+0" value="0" type="text" /><input name="Constitution-save-prof" type="checkbox" />
@@ -399,16 +424,16 @@
     <section>
       <section class="flavor">
         <div class="personality">
-          <label for="personality">Personality</label><textarea name="personality"></textarea>
+          <label for="personality">Personality</label><textarea name="personality" placeholder="Create Your Own"></textarea>
         </div>
         <div class="ideals">
-          <label for="ideals">Ideals</label><textarea name="ideals"></textarea>
+          <label for="ideals">Ideals</label><textarea name="ideals" placeholder="Create Your Own"></textarea>
         </div>
         <div class="bonds">
-          <label for="bonds">Bonds</label><textarea name="bonds"></textarea>
+          <label for="bonds">Bonds</label><textarea name="bonds" placeholder="Create Your Own"></textarea>
         </div>
         <div class="flaws">
-          <label for="flaws">Flaws</label><textarea name="flaws"></textarea>
+          <label for="flaws">Flaws</label><textarea name="flaws" placeholder="Create Your Own"></textarea>
         </div>
       </section>
       <section class="features">
@@ -418,8 +443,9 @@
       </section>
     </section>
   </main>
-  <section id="submit-btn">
-    <input id="submit-input" type="submit" />
+  <section id="form-btns">
+    <input id="submit-input" type="submit" value='Generate New Character'/>
+    <input id="save-input" type="submit" value='Save'/>
   </section>
 </form>
 

@@ -1,8 +1,6 @@
 const raceSelector = document.querySelector('#race-selector')
 const formSubmit = document.querySelector('#submit-input')
 
-// const { baseGenerate, modifierGenerate } = require('../../utils/randomNumGen')
-
 const apiUrl = 'https://www.dnd5eapi.co/api/'
 
 async function updateCharacterSheet(event) {
@@ -11,13 +9,8 @@ async function updateCharacterSheet(event) {
   let raceName = document.querySelector('#race').value
   let className = document.querySelector('#class').value
 
-  console.log(raceName)
-  console.log(className)
-
   let raceData = await getRace(raceName)
   let classData = await getClass(className)
-
-
 
   console.log(raceData)
   console.log(classData)
@@ -25,6 +18,8 @@ async function updateCharacterSheet(event) {
   displayCharacterInfo(raceData, classData)
   // storeCharacter()
 }
+
+// API data retrieval
 
 async function storeCharacter() {
   let newCharacter = await fetch('/api/characters')
@@ -44,22 +39,39 @@ async function getClass(val) {
 
   return response
 }
-// raceData, classData
+
+// Gathers all infor and displays to page
+
 function displayCharacterInfo(raceData, classData) {
-  let statArr = document.querySelectorAll('.stat')
   let statModArr = document.querySelectorAll('.statmod')
-  let skillArr = document.querySelectorAll('.skill-num')
-  let savingThrowsArr = document.querySelectorAll('.saving-throws')
   let speedNum = document.querySelector("input[name='speed']");
   let hitDie = document.querySelector("input[name='remaininghd']")
   let hitPoints = document.querySelector("input[name='currenthp']")
   let initiative = document.querySelector("input[name='initiative']")
-  let listArea = document.querySelector("textarea[name='otherprofs']")
+  let armorEl = document.querySelector("input[name='ac']")
 
+  let defaultArmor = 10
 
-  // console.log(statArr)
-  console.log(statModArr)
-  // console.log(skillArr)
+  generateStats()
+
+  generateExtras(raceData, classData)
+
+  checkboxes(classData)
+
+  speedNum.value = raceData.speed
+  hitDie.value = classData.hit_die
+  hitPoints.value = parseInt(statModArr[2].value) + parseInt(classData.hit_die)
+  initiative.value = statModArr[1].value
+  armorEl.value = defaultArmor + parseInt(statModArr[1].value)
+}
+
+// Functions to generate specific things on page
+
+function generateStats() {
+  let statArr = document.querySelectorAll('.stat')
+  let statModArr = document.querySelectorAll('.statmod')
+  let skillArr = document.querySelectorAll('.skill-num')
+  let savingThrowsArr = document.querySelectorAll('.saving-throws')
 
   let basicStats = [15, 14, 13, 12, 10, 8]
 
@@ -109,22 +121,64 @@ function displayCharacterInfo(raceData, classData) {
   for (let i = 0; i < skillArr.length; i++) {
     skillArr[i].value = modifierGenerate()
   }
+}
 
-  let profsListStr;
+function generateExtras(raceData, classData) {
+  let profsArea = document.querySelector("textarea[name='otherprofs']")
+  let traitsArea = document.querySelector("textarea[name='features']")
+
+  let profsListStr = ``;
+  let traitsListStr = ``;
+
+  classData.proficiencies.splice(classData.proficiencies.length - 2, 2);
 
   for (let i = 0; i < classData.proficiencies.length; i++) {
-    profsListStr += `${classData.proficiencies[i].name}\n`
+    profsListStr += `${classData.proficiencies[i].name}\r\n`
   }
 
-  console.log(profsListStr)
+  for (let i = 0; i < raceData.traits.length; i++) {
+    traitsListStr += `${raceData.traits[i].name}\r\n`
+  }
 
-  listArea.innerText = profsListStr
-
-  speedNum.value = raceData.speed
-  hitDie.value = classData.hit_die
-  hitPoints.value = parseInt(statModArr[2].value) + parseInt(classData.hit_die)
-  initiative.value = statModArr[1].value
+  profsArea.value = profsListStr
+  traitsArea.value = traitsListStr
 }
+
+function checkboxes(classData) {
+  let strengthCheck = document.querySelector("input[name='Strength-save-prof']")
+  let dexCheck = document.querySelector("input[name='Strength-save-prof']")
+  let conCheck = document.querySelector("input[name='Constitution-save-prof']")
+  let wisCheck = document.querySelector("input[name='Wisdom-save-prof']")
+  let intelCheck = document.querySelector("input[name='Intelligence-save-prof']")
+  let chaCheck = document.querySelector("input[name='Charisma-save-prof']")
+
+  strengthCheck.checked = false
+  dexCheck.checked = false
+  conCheck.checked = false
+  wisCheck.checked = false
+  intelCheck.checked = false
+  chaCheck.checked = false
+
+  for (let i = 0; i < classData.saving_throws.length; i++) {
+    if (classData.saving_throws[i].name === 'STR') {
+      strengthCheck.checked = true
+    } else if (classData.saving_throws[i].name === 'DEX') {
+      dexCheck.checked = true
+    } else if (classData.saving_throws[i].name === 'CON') {
+      conCheck.checked = true
+    } else if (classData.saving_throws[i].name === 'WIS') {
+      wisCheck.checked = true
+    } else if (classData.saving_throws[i].name === 'INT') {
+      intelCheck.checked = true
+    } else if (classData.saving_throws[i].name === 'CHA') {
+      chaCheck.checked = true
+    } else {
+      return
+    }
+  }
+}
+
+// helper function
 
 function modifierGenerate() {
   let randomNum = Math.floor(Math.random() * 5)
@@ -132,5 +186,7 @@ function modifierGenerate() {
 
   return randomNum
 }
+
+// Listeners
 
 formSubmit.addEventListener('click', updateCharacterSheet)
