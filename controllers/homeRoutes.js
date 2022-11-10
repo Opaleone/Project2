@@ -23,5 +23,11 @@ home.get('/login', (req, res) => {
     res.status(500).json({message: 'Internal Server Error'})
   }
 })
-
+home.get('/homepage', (req, res) => {
+  try {
+    return res.render('homepage')
+  } catch (err) {
+    res.status(500).json({message: 'Internal Server Error'})
+  }
+})
 module.exports = home
