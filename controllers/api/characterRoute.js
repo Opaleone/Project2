@@ -1,8 +1,8 @@
-const character = require('express').Router()
+const character1 = require('express').Router()
 
-const Character = require('./../../models/character')
+const Character = require('../../models/character')
 
-character.get('/', async (req, res) => {
+character1.get('/', async (req, res) => {
   try {
     const allCharacters = await Character.findAll()
 
@@ -12,7 +12,7 @@ character.get('/', async (req, res) => {
   }
 })
 
-character.get('/:id', async (req, res) => {
+character1.get('/:id', async (req, res) => {
   try {
     const singleCharacter = await Character.findByPk(req.params.id)
 
@@ -22,17 +22,17 @@ character.get('/:id', async (req, res) => {
   }
 })
 
-character.post('/', async (req, res) => {
+character1.post('/', async (req, res) => {
+  console.log("something");
   try {
     const newCharacter = await Character.create(req.body)
-
     res.status(201).json({message: `${newCharacter} added successfully!`})
   } catch (err) {
     res.status(500).json(err)
   }
 })
 
-character.put('/:id', async (req, res) => {
+character1.put('/:id', async (req, res) => {
   try {
     await Character.update(req.body, {
       where: {
@@ -46,7 +46,7 @@ character.put('/:id', async (req, res) => {
   }
 })
 
-character.delete('/:id', async (req, res) => {
+character1.delete('/:id', async (req, res) => {
   try {
     await Character.destroy({
       where: {
@@ -60,4 +60,4 @@ character.delete('/:id', async (req, res) => {
   }
 })
 
-module.exports = character
+module.exports = character1

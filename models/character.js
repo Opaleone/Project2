@@ -16,20 +16,20 @@ Character.init(
         },
         name: {
             type: DataTypes.STRING,
-            allowNull: false,
+            
         },
         description: {
             type: DataTypes.STRING,
-            allowNull: false,
+            
 
         },
         alignment: {
             type: DataTypes.STRING,
-            allowNull: false,
+            
         },
         strength: {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            
             defaultValue: 0
         },
         dexterity: {
@@ -39,40 +39,40 @@ Character.init(
         },
         constitution: {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            
             defaultValue: 0
         },
         intelligence: {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            
             defaultValue: 0
         },
         wisdom: {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            
             defaultValue: 0
         },
         charisma: {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            
             defaultValue: 0
         },
-        class_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: Class,
-                key: 'id',
-            },
-        },
-        race_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: Race,
-                key: 'id',
-            },
-        },
+        // class_id: {
+        //     type: DataTypes.INTEGER,
+        //     defaultValue: 0,
+        //     references: {
+        //         model: Class,
+        //         key: 'id',
+        //     },
+        // },
+        // race_id: {
+        //     type: DataTypes.INTEGER,
+        //     defaultValue: 0,
+        //     references: {
+        //         model: Race,
+        //         key: 'id',
+        //     },
+        // },
 
     },
     {
