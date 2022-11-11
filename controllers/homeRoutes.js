@@ -2,23 +2,9 @@ const home = require('express').Router()
 const withAuth = require('../utils/auth');
 const { User } = require('../models');
 
-home.get('/', withAuth, async (req, res) => {
+home.get('/', async (req, res) => {
   try {
-    const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ['password'] },
-    })
-    console.log(req.session)
-
-    console.log(userData)
-
-    let user = userData.get({ plain: true });
-
-    console.log('ding')
-
-    return res.render('homepage', {
-      ...user,
-      logged_in: true,
-    })
+    return res.render('homepage')
   } catch (err) {
     res.status(500).json({message: 'Internal Server Error'})
   }
