@@ -15,13 +15,8 @@ home.get('/profile', withAuth, async (req, res) => {
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
     })
-    console.log(req.session)
-
-    console.log(userData)
 
     let user = userData.get({ plain: true });
-
-    console.log('ding')
 
 
     res.render('profile', {
@@ -38,13 +33,8 @@ home.get('/characterSheet', withAuth, async (req, res) => {
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
     })
-    console.log(req.session)
-
-    console.log(userData)
 
     let user = userData.get({ plain: true });
-
-    console.log('ding')
 
     return res.render('characterSheet', {
       ...user,
