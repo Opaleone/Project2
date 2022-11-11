@@ -2,42 +2,73 @@ const home = require('express').Router()
 const withAuth = require('../utils/auth');
 const { User } = require('../models');
 
-home.get('/characterSheet', (req, res) => {
+home.get('/', withAuth, async (req, res) => {
   try {
-    return res.render('characterSheet')
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+    })
+    console.log(req.session)
+
+    console.log(userData)
+
+    let user = userData.get({ plain: true });
+
+    console.log('ding')
+
+    return res.render('homepage', {
+      ...user,
+      logged_in: true,
+    })
   } catch (err) {
     res.status(500).json({message: 'Internal Server Error'})
   }
 })
 
-// home.get('/profile', withAuth, async (req, res) => {
-//   try {
-//     const userData = await User.findByPk(req.session.id, {
-//       where: {
-//         id: req.session.id
-//       }
-//     })
-    
-//     const userObject = {
-//       username: userData
-//     }
+home.get('/profile', withAuth, async (req, res) => {
+  try {
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+    })
+    console.log(req.session)
 
-//     console.log(req.session)
+    console.log(userData)
 
-//     console.log('ding')
-//     // console.log(userData)
+    let user = userData.get({ plain: true });
 
-//     // const user = userData.get({ plain: true });
+    console.log('ding')
 
-//     // console.log('This is the user info:' + userData);
 
-//     res.render('profile', {
-//       ...userObject,
-//     })
-//   } catch (err) {
-//     res.status(500).json({message: 'Internal Server Error'})
-//   }
-// })
+    res.render('profile', {
+      ...user,
+      logged_in: true,
+    })
+  } catch (err) {
+    res.status(500).json({message: 'Internal Server Error'})
+  }
+})
+
+home.get('/characterSheet', withAuth, async (req, res) => {
+  try {
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+    })
+    console.log(req.session)
+
+    console.log(userData)
+
+    let user = userData.get({ plain: true });
+
+    console.log('ding')
+
+    return res.render('characterSheet', {
+      ...user,
+      logged_in: true,
+    })
+  } catch (err) {
+    res.status(500).json({message: 'Internal Server Error'})
+  }
+})
+
 
 home.get('/login', (req, res) => {
   try {
@@ -55,11 +86,5 @@ home.get('/signup', (req, res) => {
   }
 })
 
-home.get('/', (req, res) => {
-  try {
-    return res.render('homepage')
-  } catch (err) {
-    res.status(500).json({message: 'Internal Server Error'})
-  }
-})
+
 module.exports = home
