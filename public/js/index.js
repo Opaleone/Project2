@@ -1,6 +1,9 @@
+// const { response } = require("express")
+
 const raceSelector = document.querySelector('#race-selector')
 const formSubmit = document.querySelector('#submit-input')
-const formSave = document.querySelector('#save-input')
+
+const saveChar = document.querySelector('#save-input')
 
 const apiUrl = 'https://www.dnd5eapi.co/api/'
 
@@ -196,7 +199,45 @@ function modifierGenerate() {
   return randomNum
 }
 
+const saveCharacterHandler = async (event) => {
+  event.preventDefault();
+
+  const name1 = document.querySelector("input[name='charname']").value.trim();
+  // const race1 = document.querySelector("select[id='race']").value;
+  const alignment1 = document.querySelector("select[name='alignment']").value;
+  // const str = document.querySelector("input[name='Strengthscore']").value
+  // const dex = document.querySelector("input[name='Dexterityscore']").value
+  // const con = document.querySelector("input[name='Constitutionscore']").value
+  // const wis = document.querySelector("input[name='Wisdomscore']").value
+  // const int = document.querySelector("input[name='Intelligencescore']").value
+  // const cha = document.querySelector("input[name='Charismascore']").value
+
+
+  console.log(name1);
+  console.log(alignment1);
+  
+  if (name1 && alignment1) {
+    const response = await fetch('/api/characters', {
+      method: 'POST',
+      body: JSON.stringify({ name:name1, alignment:alignment1}),
+      headers: { 'Content-Type': 'application/json' },
+    });
+  
+    
+
+    if (response.ok) {
+      console.log(response);
+    } else {
+      alert('Failed to sign up.');
+      console.log(response);
+    }
+}}
+
+
+
+
 // Listeners
 
 formSubmit.addEventListener('click', updateCharacterSheet)
-// formSave.addEventListener('click', saveCurrentCharacter)
+saveChar.addEventListener('click', saveCharacterHandler)
+
