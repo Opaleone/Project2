@@ -36,3 +36,10 @@ html, body {
 .footer, .push {
     height: 155px; /* .push must be the same height as .footer */
 }
+button, .logout-btn{
+    text-decoration: none;
+    background-color: #212529;
+    color: white;
+    border: #212529;
+    margin-bottom: 5px;
+}
