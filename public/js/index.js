@@ -2,6 +2,7 @@
 
 const raceSelector = document.querySelector('#race-selector')
 const formSubmit = document.querySelector('#submit-input')
+
 const saveChar = document.querySelector('#save-input')
 
 const apiUrl = 'https://www.dnd5eapi.co/api/'
@@ -181,6 +182,14 @@ function checkboxes(classData) {
   }
 }
 
+// Function for DB storage
+
+function saveCurrentCharacter() {
+  
+}
+
+
+
 // helper function
 
 function modifierGenerate() {
@@ -231,3 +240,4 @@ const saveCharacterHandler = async (event) => {
 
 formSubmit.addEventListener('click', updateCharacterSheet)
 saveChar.addEventListener('click', saveCharacterHandler)
+

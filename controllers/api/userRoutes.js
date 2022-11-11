@@ -1,9 +1,28 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
+router.post('/signup', async (req, res) => {
+  try {
+    const userData = await User.create(req.body);
+
+    req.session.save(() => {
+      req.session.user_id = userData.id;
+      req.session.logged_in = true;
+
+      res.status(200).json(userData);
+    });
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
 router.post('/login', async (req, res) => {
   try {
+
+    console.log(req)
     const userData = await User.findOne({ where: { email: req.body.email } });
+
+    console.log(userData)
 
     if (!userData) {
       res
@@ -12,7 +31,11 @@ router.post('/login', async (req, res) => {
       return;
     }
 
+    console.log('First ding')
+
     const validPassword = await userData.checkPassword(req.body.password);
+
+    console.log('Password ding')
 
     if (!validPassword) {
       res
@@ -20,6 +43,8 @@ router.post('/login', async (req, res) => {
         .json({ message: 'Incorrect email or password, please try again' });
       return;
     }
+
+    console.log('Second Ding')
 
     req.session.save(() => {
       req.session.user_id = userData.id;
@@ -30,6 +55,7 @@ router.post('/login', async (req, res) => {
 
   } catch (err) {
     res.status(400).json(err);
+    console.log('ding')
   }
 });
 
