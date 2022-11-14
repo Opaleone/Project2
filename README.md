@@ -3,14 +3,14 @@ The DnD Companion App is an application that users to create, store, and update 
 
 
 ## Built With
-*Node 
-*Express
-*Bootstrap
-*SQL
-*Handlebars
-*DnD API
-*Google Fonts
-*BCrypt
+* Node 
+* Express
+* Bootstrap
+* SQL
+* Handlebars
+* DnD API
+* Google Fonts
+* BCrypt
 
 ## Usage
 Using the app is easy! Simply create an account, navigate to the create a character page, select your prerequisites and click "Generate Character." If everything is to your liking then click "Save."
