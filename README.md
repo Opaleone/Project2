@@ -19,10 +19,10 @@ Using the app is easy! Simply create an account, navigate to the create a charac
 ## Links
 Live Url - https://dnd-companion-app.herokuapp.com/
 ## Contributing
-Leone Varando - https://github.com/Opaleone
-Jacob Neal - https://github.com/CoolComicsJ
-Zachary Schroeder - https://github.com/ZacharyJohn1
-reddit user /u/nevertras for the character sheet HTML/CSS
+* Leone Varando - https://github.com/Opaleone
+* Jacob Neal - https://github.com/CoolComicsJ
+* Zachary Schroeder - https://github.com/ZacharyJohn1
+* Reddit user /u/nevertras for the character sheet HTML/CSS
 
 ## License
 
